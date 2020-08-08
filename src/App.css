@@ -1,38 +1,98 @@
-.App {
+.link:hover{
+  text-decoration: none !important;  
+}
+.link{
+  margin-right: 10px;
+}
+
+.loading{
+  position: absolute !important;
+  left: 50%;
+  top: 40%;
+}
+
+.notfound{
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 12em !important;
+}
+
+.auth{
+  display: flex !important;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+
+.icon-user{
+  background: rgb(175, 171, 171);
+    height: 30px;
+    width: 30px;
+    border-radius: 50px;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 2px;
+}
+
+.pagination{
+  position: absolute;
+  right: 45%;
+}
+
+.search-book{
+  width: 300px;
+    float: right;
+    margin: -58px 60px;
+}
+
+.no-cart{
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.cart{
+  border-top: 1px solid #e9e7e7;
+  padding-top: 20px;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.close-book{
+  position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 25px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.close-book:hover{
+  font-size: 36px;
+    transition: color .3s ease-in-out,background-color .3s ease-in-out;
+    color: #fff;
+    background-color: #80acc0;
+    border-radius: 15%;
+}
+
+.cart-container{
+  position: relative;
+}
+
+.cart-item{
+  font-size: 30px;
+  margin-right: 15px;
+}
+
+.number-item-cart{
+  position: absolute;
+    width: 16px;
+    height: 17px;
+    background: #FF5722;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    top: -5px;
+    right: 10px;
+    font-size: 12px;
 }
