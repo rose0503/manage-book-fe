@@ -7,16 +7,39 @@ import { CartContext } from '../../../hooks/cartContext';
 import './Cart.css'
 import { UseContext } from '../../../App';
 import { useHistory } from 'react-router-dom';
-
+import cartApi from '../../../api/cartApi';
 
 
 const Cart = () =>{
     const { state, dispatch } = useContext(UseContext);
+    const { cartItems, removeAll, setCartItems} = useContext(CartContext)
     const history = useHistory();
+
     const rentBook = () => {
       if(!state){
         message.warning('Bạn phải đăng nhập để thuê')
         history.push('/signin')
+      }else{
+        let newarr = []
+        cartItems.map(item => {
+          const itemsub = item._id;
+          newarr.push(itemsub)
+        })
+
+        const data = {
+          userId: state._id,
+          listCart: newarr
+        }
+        cartApi.addcart(data)
+        .then(response => {
+          message.success(response.data.message)
+          history.push('/transaction')
+          setCartItems([])
+          localStorage.removeItem("cart");
+       })
+       .catch(err => {
+          message.error(err.response.data.error || "Thuê sách thất bại")
+       })
       }
     }
     return (
@@ -26,13 +49,8 @@ const Cart = () =>{
           <div className="d-flex justify-content-center">
             <h2 className="mb-4">Giỏ hàng</h2>
           </div>
-          <CartContext.Consumer>
-              {({cartItems}) =>  <Button disabled={!cartItems.length} onClick={()=>rentBook()}>Thuê sách</Button>}
-          </CartContext.Consumer>
-          <CartContext.Consumer>
-          {({removeAll, cartItems}) =>
-              <Button disabled={!cartItems.length} onClick={()=>removeAll()}>Xóa tất cả</Button>
-          }</CartContext.Consumer>
+          <Button disabled={!cartItems.length} onClick={()=>rentBook()}>Thuê sách</Button>
+          <Button disabled={!cartItems.length} onClick={()=>removeAll()}>Xóa tất cả</Button>
             <CartContext.Consumer>   
           {
             ({cartItems}) => 

@@ -35,7 +35,7 @@ const NavBar = () => {
         <Link to= "/profile">Thông tin cá nhân</Link>
       </Menu.Item>
       <Menu.Item key="4">
-          <Link to= "/transaction">Sách thuê</Link>
+          <Link to= "/usertrans">Sách mượn</Link>
       </Menu.Item>
       <Menu.Divider />
       <Menu.Item key="5" 

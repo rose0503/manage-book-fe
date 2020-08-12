@@ -25,23 +25,18 @@ function Home() {
     _page: 1,
     title_like : ''
   })
-    useEffect(()=>{
-      setLoading(true)
-      bookApi.allbook(filters)
-      .then(response =>{
-        setLoading(false)
-        setData(response.data.books)
-        setPagination(response.data.pagination)
-      }).catch(error =>{
-        if(error.response.statusText === "Unauthorized"){
-          message.error(error.response.data ? error.response.data.error :"Loading fail")
-          history.push('/signin')
-        }else{
-          message.error("Loading fail")
-        }
-        
-      })
-    },[filters])
+  
+  useEffect(()=>{
+    setLoading(true)
+    bookApi.allbook(filters)
+    .then(response =>{
+      setLoading(false)
+      setData(response.data.books)
+      setPagination(response.data.pagination)
+    }).catch(error =>{
+        message.error("Loading fail")
+    })
+  },[filters])
 
   function handlePageChange(newPage){
       setFilters({
@@ -69,6 +64,7 @@ function Home() {
         data.map((item, i) =>{
           return (
             <>
+            
             <div className="item-list"  key={i} >
               <div className="col-sm-6 col-md-4 col-lg-3">
                 <div className="card mb-3" style={{width: "210px"}}>

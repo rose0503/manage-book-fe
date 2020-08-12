@@ -4,14 +4,15 @@ import Navbar from './components/Common/Navbar'
 
 import Signin from './components/Screen/Signin/Signin'
 import User from './components/Screen/User'
-import Transaction from './components/Screen/Transaction'
+import Transaction from './components/Screen/Transaction/Transaction'
 import Cart from './components/Screen/Cart/Cart'
 import Loading from './components/Common/Loading'
 import NotFound from './components/Common/NotFound'
 import {reducer, initialState} from './hooks/useReducer'
-import DetailBook from './components/Screen/DetailBook';
+import DetailBook from './components/Screen/DetailBook/DetailBook';
 import Profile from './components/Screen/Profile';
 import {CartProvider} from './hooks/cartContext';
+import UserTrans from './components/Screen/UserTrans/UserTrans';
 const Signup = React.lazy(() => import('./components/Screen/Signup/Signup'))
 const Home = React.lazy(() => import('./components/Screen/Home/Home'))
 
@@ -57,6 +58,9 @@ const Routing = () => {
         </Route>
         <Route path='/profile'>
           <Profile/>
+        </Route>
+        <Route path='/usertrans'>
+          <UserTrans/>
         </Route>
         <Route component={NotFound} />
       </Switch>  
