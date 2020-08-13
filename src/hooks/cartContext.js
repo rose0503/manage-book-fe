@@ -1,4 +1,5 @@
 import React, {useState, createContext} from 'react'
+import { message } from 'antd';
 
 export const CartContext = createContext();
 
@@ -40,9 +41,16 @@ export const CartProvider = (props)=> {
     }
     
     function addToCart(book){
-        setCartItems(cartItems.concat(book))
-        // setWithExpiry('cart', cartItems.concat(book), (24*60*60))
-        localStorage.setItem("cart", JSON.stringify(cartItems.concat(book)));
+        // cartItems.map(i =>{
+        //     if(i._id === book){
+        //         message.warning("Sách này đã được thêm trong giỏ")
+        //     }else{
+                setCartItems(cartItems.concat(book))
+                 // setWithExpiry('cart', cartItems.concat(book), (24*60*60))
+                localStorage.setItem("cart", JSON.stringify(cartItems.concat(book)));
+            //}
+        
+        
     }
 
     function removeItem(bookremove){

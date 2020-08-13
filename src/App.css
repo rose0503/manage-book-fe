@@ -75,6 +75,7 @@
 
 .cart-container{
   position: relative;
+  width: fit-content;
 }
 
 .cart-item{

@@ -20,6 +20,15 @@ const tranApi = {
       },
       params
     })
+  },
+  complete: (a) => {
+    return axiosClient({
+      method: "patch",
+      url: `/trans/complete/${a}`,
+      headers: {
+        'Authorization': "Bearer " + localStorage.getItem("jwt")
+      },
+    })
   }
 }
   export default tranApi

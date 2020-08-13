@@ -1,17 +1,25 @@
 import React, { useEffect, useContext, useState } from 'react';
-import { message, Table } from 'antd';
+import { message, Table, Tag, Space , Button} from 'antd';
 import { UseContext } from '../../../App';
 import tranApi from '../../../api/transactionApi';
 import Loading from '../../Common/Loading';
+import './UserTrans.css'
+import moment from 'moment'
+import { Link, useParams } from 'react-router-dom';
 
 function Trans() {
     const [loading, setLoading] = useState(false);
     const {state, dispatch} = useContext(UseContext);
     const [data, setData] = useState([])
+    const [subdata,setSubData] = useState([]);
+    // const {bookid} = useParams();
+    moment.locale("vi");
 
     useEffect(()=>{
+      setLoading(true)
         tranApi.gettran()
         .then(response => {
+            setLoading(false)
             setData(response.data.trans)
         })
         .catch(err => {
@@ -19,66 +27,103 @@ function Trans() {
         })        
     },[])
 
+    const onChangeComplete = (bookid) =>{
+      tranApi.complete(bookid)
+      .then(response =>{
+        // setLoading(false)
+        setData(...state, response.data.trans)
+        message.success(response.data.message)
+      }).catch(err => {
+        // console.log(err.response)
+        message.error(err.response ? err.response.data.error : "Loading failed")
+    }) 
+    }
+
     
-  
     const columns = [
-    {
-      title: 'Tài khoản',
-      dataIndex: 'name',
-      key: 'name',
-      render: text => <a>{text}</a>,
-    },
-    {
-      title: 'Sách mượn',
-      dataIndex: 'book',
-      key: 'book',
-      render: book => (
+      {
+        title: 'Ảnh',
+        dataIndex: 'picBook',
+        key: 'picBook',
+        render: picBook => <img src={picBook} className="picbook"/>,
+        
+      },
+      {
+        title: 'Sách mượn',
+        dataIndex: 'titleBook',
+        key: 'titleBook',
+        
+      },
+      {
+        title: 'Ngày mượn',
+        dataIndex: 'dateRent',
+        key: 'dateRent',
+        render: dateRent => 
         <>
-          {book.map((b, i) => {
-            return (
-              <ul key={i}>
-                <li>{b.title}</li>
-              </ul>
-            );
-          })}
+          {
+            moment(dateRent).format('L')
+          }
         </>
-      ),
-    },
-    {
-      title: 'Tổng sách',
-      dataIndex: 'tong',
-      key: 'tong',
-    },
-    {
+      },
+      {
+        title: 'Trạng thái',
+        dataIndex: 'isComplete',
+        key: 'isComplete',
+        render: isComplete => 
+          <>
+            {
+              isComplete ? <Tag color='geekblue'>Đã trả</Tag> : <Tag color='volcano'>Chưa trả</Tag>
+            }
+          </>
+      },
+      {
       title: 'Action',
       key: 'action',
-    },
+      render: (isComplete, record) => (
+        <Space size="middle">
+          <Button  disabled={record.isComplete} onClick={()=>onChangeComplete(record.bookId)}>Trả sách</Button>
+        </Space>
+      ),
+    }
     ];
-  
-    const d =  data.map(item => ({
-        key: item._id,
-        name: item.userId.name,
-        book: item.bookRent.map(i => ({title: i.bookId.title})),
-        tong: item.bookRent.length
-      }) 
-    )
-      const title = data.map(item => {
-        return(
-            item.userId.name
-        )
-    })
+
+    
+    
+    
+    useEffect(()=>{
+      let a = []
+    
+      data.map(item => {
+          return (
+          item ? item.bookRent.map(i => {
+            const b = {
+              bookId: i.bookId._id,
+              titleBook: i.bookId.title,
+              isComplete : i.isComplete,
+              dateRent : i.dateRent,
+              picBook: i.bookId.coverUrl
+              } 
+                a.push(b)
+              }) : '' )
+      })
+        setSubData(a)
+     
+    },[data])
+    
+    const title = state ? state.name : "Tài khoản"
       return (
         <>
-        <div style={{width: "80%", clear:"both"}}>
+        <div style={{width: "100%", clear:"both"}}>
         {
           loading ? <Loading />
           :        
           <>
               <Table columns={columns}
-                     dataSource={d} 
+                     dataSource={subdata} 
                      size="middle"
-                     title={() => title}
+                     title={() => <h4>{title}</h4>}
                      bordered
+                     rowKey="uid"
                 />
           </>
                     

@@ -33,7 +33,7 @@ const Cart = () =>{
         cartApi.addcart(data)
         .then(response => {
           message.success(response.data.message)
-          history.push('/transaction')
+          history.push('/usertrans')
           setCartItems([])
           localStorage.removeItem("cart");
        })
