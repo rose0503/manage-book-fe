@@ -12,7 +12,6 @@ function Trans() {
     const {state, dispatch} = useContext(UseContext);
     const [data, setData] = useState([])
     const [subdata,setSubData] = useState([]);
-    // const {bookid} = useParams();
     moment.locale("vi");
 
     useEffect(()=>{
@@ -31,8 +30,9 @@ function Trans() {
       tranApi.complete(bookid)
       .then(response =>{
         // setLoading(false)
-        setData(...state, response.data.trans)
-        message.success(response.data.message)
+        setData(response.data.trans)
+        // message.success(response.data ?  response.data.message : "Trả sách thành công")
+        console.log(data)
       }).catch(err => {
         // console.log(err.response)
         message.error(err.response ? err.response.data.error : "Loading failed")
@@ -40,6 +40,28 @@ function Trans() {
     }
 
     
+    
+
+    let a = []
+    data.map(item => {
+      return (
+      item ? item.bookRent.map(i => {
+        const b = {
+          bookId: i.bookId._id,
+          titleBook: i.bookId.title,
+          isComplete : i.isComplete,
+          dateRent : i.dateRent,
+          picBook: i.bookId.coverUrl
+          } 
+            a.push(b)
+          }) : '' )
+  })
+    
+    // useEffect(()=>{
+      
+      
+    // })
+
     const columns = [
       {
         title: 'Ảnh',
@@ -85,27 +107,10 @@ function Trans() {
         </Space>
       ),
     }
-    ];
-
-    
-    
+    ];   
     
     useEffect(()=>{
-      let a = []
-    
-      data.map(item => {
-          return (
-          item ? item.bookRent.map(i => {
-            const b = {
-              bookId: i.bookId._id,
-              titleBook: i.bookId.title,
-              isComplete : i.isComplete,
-              dateRent : i.dateRent,
-              picBook: i.bookId.coverUrl
-              } 
-                a.push(b)
-              }) : '' )
-      })
+      
         setSubData(a)
      
     },[data])
@@ -123,7 +128,10 @@ function Trans() {
                      size="middle"
                      title={() => <h4>{title}</h4>}
                      bordered
-                     rowKey="uid"
+                     pagination={{
+                      pageSize: 5
+                    }}
+                     rowKey={record => record._id}
                 />
           </>
                     

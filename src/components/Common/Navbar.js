@@ -52,12 +52,12 @@ const NavBar = () => {
   const cart = () => {
     return (
       <>
-        <div className="cart-container">
+        <Link className="cart-container"  to='/cart'>
         <CartContext.Consumer>
           {({cartItems}) => <div className={cartItems.length=== 0 ? '' : `number-item-cart`}>{cartItems.length=== 0 ? '' : cartItems.length}</div>}
         </CartContext.Consumer> 
         <ShoppingCartOutlined className="cart-item"/>   
-        </div>
+        </Link>
       </>
     )
   }       
@@ -94,14 +94,14 @@ const NavBar = () => {
             <NavItem>
               <NavLink tag={Link} to='/'>Home</NavLink>
             </NavItem>
-            <NavItem>
+            {/* <NavItem>
               <NavLink tag={Link} to="/user">Users</NavLink>
+            </NavItem> */}
+            <NavItem>
+                <NavLink tag={Link} to='/transaction'>Giao Dịch</NavLink>
             </NavItem>
             <NavItem>
-                <NavLink tag={Link} to='/transaction'>Transaction</NavLink>
-            </NavItem>
-            <NavItem>
-                <NavLink tag={Link} to={'/cart'}>My Cart</NavLink>
+                <NavLink tag={Link} to='/usertrans'>Sách Mượn</NavLink>
             </NavItem>
           </Nav>
           {renderList()}
