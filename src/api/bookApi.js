@@ -14,6 +14,20 @@ const bookApi = {
       url: `/books/${params}`,
       params
     })
-  }
+  },
+  createbook: (title, description, coverUrl) => {
+    return axiosClient({
+      method: "post",
+      url: "/books/create",
+      headers: {
+          'Authorization': "Bearer " + localStorage.getItem("jwt")
+      },
+      data : {
+        title,
+        description,
+        coverUrl
+      }
+    })
+  },
 }
   export default bookApi

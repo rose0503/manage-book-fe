@@ -1,0 +1,15 @@
+.avatar-uploader > .ant-upload {
+    width: 128px;
+    height: 128px;
+}
+
+.update-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px 10px 10px 15px;
+}
+
+.input-book{
+    margin: 5px !important;
+}

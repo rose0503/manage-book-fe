@@ -25,6 +25,9 @@
     width: 100%;
 }
 
+.hover-user:hover{
+  cursor: pointer;
+}
 
 .icon-user{
   background: rgb(175, 171, 171);
@@ -39,13 +42,27 @@
 
 .pagination{
   position: absolute;
-  right: 45%;
+  right: 50%;
+  bottom: 0;
 }
 
+
 .search-book{
-  width: 300px;
-    float: right;
-    margin: -58px 60px;
+  width: 100%;
+    /* float: right; */
+    margin: -3.5rem 1rem 1rem ;
+    display: flex;
+    justify-content: flex-end;
+}
+
+@media screen and (max-width: 767px) {
+  .search-book{
+    width: 100%;
+      /* float: right; */
+      margin: -1rem 1rem 1rem 0 ;
+      display: flex;
+      justify-content: flex-start;
+  }
 }
 
 .no-cart{
@@ -58,6 +75,12 @@
   justify-content: center;
 }
 
+.shop{  
+  border-top: 1px solid #e9e7e7;
+  padding-top: 20px;
+  display: block;
+  text-align: center;
+}
 .close-book{
   position: absolute;
     top: 10px;
@@ -76,6 +99,13 @@
 .cart-container{
   position: relative;
   width: fit-content;
+  color: rgba(0,0,0,.5) !important;
+}
+
+.shop-container{
+  margin-top: -10px;
+  font-size: 22px;
+  margin-right: 12px;
   color: rgba(0,0,0,.5) !important;
 }
 
@@ -98,3 +128,25 @@
     right: 10px;
     font-size: 12px;
 }
+
+#img-hover:hover{
+  opacity: 0.3;  
+}
+
+#card-hover:hover{ 
+  box-shadow: 0px 0px 3px #888888;
+  transition: 0s !important;
+}
+
+.top-navbar{
+  width: 100%;
+  padding: 4px 0.5rem 4px 1.5rem;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background-color: #e1eef4;
+}
+
+

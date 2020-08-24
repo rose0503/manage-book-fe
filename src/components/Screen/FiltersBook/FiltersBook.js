@@ -37,7 +37,7 @@ function FiltersBook(props) {
 
     return (
         <div className="search-book">
-            <Form>
+            <Form style={{width:"300px"}}>
             <Input.Search placeholder="Nhập sách cần tìm" value={searchBook} 
                 onChange={handleSearchBookChange}  />
 

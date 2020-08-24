@@ -48,12 +48,12 @@ function Trans() {
   {
     title: 'Tổng sách',
     dataIndex: 'tong',
-    key: 'tong',
-  },
-  {
-    title: 'Action',
-    key: 'action',
-  },
+    key: 'tong'
+   },
+  // {
+  //   title: 'Action',
+  //   key: 'action',
+  // },
   ];
 
   const d =  data.map(item => ({

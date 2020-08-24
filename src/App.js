@@ -13,6 +13,11 @@ import DetailBook from './components/Screen/DetailBook/DetailBook';
 import Profile from './components/Screen/Profile';
 import {CartProvider} from './hooks/cartContext';
 import UserTrans from './components/Screen/UserTrans/UserTrans';
+import MyShop from './components/Screen/Shop/MyShop';
+import Shop from './components/Screen/Shop/Shop';
+import CreateBook from './components/Screen/Book/CreateBook';
+import BookStore from './components/Screen/BookStore/BookStore';
+
 const Signup = React.lazy(() => import('./components/Screen/Signup/Signup'))
 const Home = React.lazy(() => import('./components/Screen/Home/Home'))
 
@@ -33,6 +38,9 @@ const Routing = () => {
   return(
       <Switch>
         <Route exact path='/'>
+          <BookStore/>
+        </Route>
+        <Route path='/book'>
           <Home/>
         </Route>
         <Route path='/signin'>
@@ -61,6 +69,15 @@ const Routing = () => {
         </Route>
         <Route path='/usertrans'>
           <UserTrans/>
+        </Route>
+        <Route path='/myshop'>
+          <MyShop />
+        </Route>
+        <Route path='/shop'>
+          <Shop />
+        </Route>
+        <Route path='/createbook'>
+          <CreateBook />
         </Route>
         <Route component={NotFound} />
       </Switch>  

@@ -11,8 +11,8 @@ import {
     NavLink,
     NavbarText
   } from 'reactstrap';
-import {UserOutlined, ShoppingCartOutlined } from '@ant-design/icons'; 
-import { Menu, Dropdown } from 'antd';
+import {UserOutlined, ShoppingCartOutlined, ShopOutlined, AppstoreAddOutlined } from '@ant-design/icons'; 
+import { Menu, Dropdown, Tooltip } from 'antd';
 import { UseContext } from '../../App';
 import {CartContext} from '../../hooks/cartContext'
   
@@ -60,39 +60,84 @@ const NavBar = () => {
         </Link>
       </>
     )
-  }       
+  } 
+
+  const shop = () => {
+    if (state) {
+    return (
+      <>
+        <Link className="shop-container" to='/myshop'>
+              <Tooltip  title="Cửa hàng của bạn" >
+                  <ShopOutlined />
+              </Tooltip>
+        </Link>
+      </>
+    )
+    }
+    else{
+      return(
+        <></>
+      )
+      
+    } 
+  }     
 
   const renderList = () => {
     if (state) {
         return (
-          <>
-            {cart()}         
-            <Dropdown overlay={menu}>
-              <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
+          <div style={{display:"flex"}}>
+            {
+              state.isAdmin ?
+              <div style={{display:"flex",alignItems:"flex-end"}}>
+                <h6 style={{marginRight:"10px"}}>Admin</h6>
+                <Link className="shop-container"   to='/createbook'>
+                  <Tooltip  title="Thêm sách" >
+                    <AppstoreAddOutlined />
+                  </Tooltip>
+                </Link>
+              </div>
+              :
+              <div style={{display:"flex", alignItems:"center"}}>
+                <span style={{marginRight:"6px"}}>Chào {state.name},</span>
+              </div>
+
+            }
+            
+            <Dropdown className="hover-user" overlay={menu}>
+              <a className="ant-dropdown-link " onClick={e => e.preventDefault()}>
                 <UserOutlined className="icon-user"/>
               </a>
             </Dropdown>
-          </>
+          </div>
         )
     }else{
       return (
-        <>
-          {cart()}  
+        <div style={{display:"flex"}}>
+           
           <NavbarText className='link'  tag={Link} to='/signin'>Đăng nhập</NavbarText>
           <NavbarText className="link" tag={Link} to='/signup'>Đăng ký</NavbarText>
-        </>
+        </div>
       )
     }
   }
   return (
     <div>
-      <Navbar color="light" light expand="md">
-        <NavbarBrand tag={Link} to="/">BOOKSTORE</NavbarBrand>
+      <div style={{padding: '0 !important'}}>
+        <div className="top-navbar">
+          <div>
+              <NavbarBrand tag={Link} to="/">BOOKSTORE</NavbarBrand>
+             
+          </div>
+          {renderList()}
+        </div>
+      </div>
+      <Navbar color="light" light expand="md" style={{padding: ".5rem 0"}}>
+        <NavbarBrand />
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
         <Nav className="mr-auto" navbar>
             <NavItem>
-              <NavLink tag={Link} to='/'>Home</NavLink>
+              <NavLink tag={Link} to='/book'>Sách</NavLink>
             </NavItem>
             {/* <NavItem>
               <NavLink tag={Link} to="/user">Users</NavLink>
@@ -101,10 +146,17 @@ const NavBar = () => {
                 <NavLink tag={Link} to='/transaction'>Giao Dịch</NavLink>
             </NavItem>
             <NavItem>
-                <NavLink tag={Link} to='/usertrans'>Sách Mượn</NavLink>
+                <NavLink tag={Link} to='/shop'>Cửa Hàng</NavLink>
             </NavItem>
-          </Nav>
-          {renderList()}
+            {state && 
+            <NavItem>
+                <NavLink tag={Link} to='/usertrans'>Sách Mượn</NavLink>
+            </NavItem>}
+        </Nav>
+        {cart()} 
+        {shop()}
+            
+          
         </Collapse>
       </Navbar>
     </div>

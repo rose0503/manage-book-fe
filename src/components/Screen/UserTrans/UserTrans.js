@@ -103,7 +103,7 @@ function Trans() {
       key: 'action',
       render: (isComplete, record) => (
         <Space size="middle">
-          <Button  disabled={record.isComplete} onClick={()=>onChangeComplete(record.bookId)}>Trả sách</Button>
+          <Button  disabled="true" onClick={()=>onChangeComplete(record.bookId)}>Trả sách</Button>
         </Space>
       ),
     }
