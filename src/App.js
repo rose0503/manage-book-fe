@@ -38,7 +38,7 @@ const Routing = () => {
   return(
       <Switch>
         <Route exact path='/'>
-          <BookStore/>
+          <Home/>
         </Route>
         <Route path='/book'>
           <Home/>

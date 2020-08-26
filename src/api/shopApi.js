@@ -23,6 +23,15 @@ const shopApi = {
       }
     })
   },
+  addshop: () => {
+    return axiosClient({
+      method: "post",
+      url: `/shop/addshop`,
+      headers: {
+        'Authorization': "Bearer " + localStorage.getItem("jwt")
+      }
+    })
+  },
   gettran: (params) => {
     return axiosClient({
       method: "get",

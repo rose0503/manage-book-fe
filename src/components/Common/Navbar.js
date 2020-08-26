@@ -88,7 +88,7 @@ const NavBar = () => {
           <div style={{display:"flex"}}>
             {
               state.isAdmin ?
-              <div style={{display:"flex",alignItems:"flex-end"}}>
+              <div style={{display:"flex"}}>
                 <h6 style={{marginRight:"10px"}}>Admin</h6>
                 <Link className="shop-container"   to='/createbook'>
                   <Tooltip  title="Thêm sách" >
@@ -120,6 +120,7 @@ const NavBar = () => {
       )
     }
   }
+
   return (
     <div>
       <div style={{padding: '0 !important'}}>
@@ -139,9 +140,6 @@ const NavBar = () => {
             <NavItem>
               <NavLink tag={Link} to='/book'>Sách</NavLink>
             </NavItem>
-            {/* <NavItem>
-              <NavLink tag={Link} to="/user">Users</NavLink>
-            </NavItem> */}
             <NavItem>
                 <NavLink tag={Link} to='/transaction'>Giao Dịch</NavLink>
             </NavItem>

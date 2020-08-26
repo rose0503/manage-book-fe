@@ -24,12 +24,17 @@ const Render = () =>{
           .then(response =>{
             setLoading(false)
             setVisible(false)
-            // setData(response.data.newShop)
+            setData(response.data.newShop)
             localStorage.setItem("user",JSON.stringify({...state, shopOwner:response.data.newShop}));
             dispatch({type:"SHOP",payload:response.data.newShop})
             message.success(response.data.message)
+            shopApi.addshop()
+            .then(response=> console.log("thanhcong"))
+            .catch(error =>{
+                  console.log(error.response.data.error || "Tạo thất bại")
+            })
           }).catch(error =>{
-            setLoading(true)
+            setLoading(false)
               message.error(error.response.data.error || "Tạo thất bại")
           })
     };
@@ -41,13 +46,13 @@ const Render = () =>{
     const handleCancel = () => {
         setVisible(false)
     };  
-    const shop = state ?  state.shopOwner.status : '' ;
+    // const shop = state.shopOwner != null ?  state.shopOwner.status : '' ;
 
 
     return (
     <>
         {
-            !shop ? 
+            !data ? 
         <>
             <div className="shop">
                 <h5  className="mb-4">Hiện tại, bạn chưa có cửa hàng!
@@ -81,7 +86,7 @@ const Render = () =>{
         :
         <>
             <div className="shop">
-                {state.shopOwner.name}
+                {data.name}
             </div>
         </>
         }
