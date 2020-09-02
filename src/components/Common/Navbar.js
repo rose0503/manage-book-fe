@@ -132,7 +132,7 @@ const NavBar = () => {
           {renderList()}
         </div>
       </div>
-      <Navbar color="light" light expand="md" style={{padding: ".5rem 0"}}>
+      <Navbar color="light" light expand="md" style={{padding: ".5rem 0", marginLeft: "0.8rem"}}>
         <NavbarBrand />
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>

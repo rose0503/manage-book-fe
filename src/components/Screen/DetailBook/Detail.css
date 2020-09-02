@@ -6,11 +6,12 @@
 .img-book{
     float: left;
     width: 200px;
-    height: 330px;
+    height: 250px;
     border: 1px solid #e9e7e7;
     margin-right: 3rem;
     flex-grow: 3;
 }
+
 
 .description-book{
     flex-grow: 9;

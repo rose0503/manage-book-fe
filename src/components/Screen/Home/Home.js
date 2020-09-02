@@ -59,8 +59,8 @@ function Home() {
         data ?
         <>
           <FiltersBook onSubmit={handleChangeFilter} />
-          <div style={{display: "flex", justifyContent:"center", clear:"both", marginBottom: "2rem"}}>
-          <div className="row">
+          <div style={{display: "flex", justifyContent:"center", clear:"both", marginBottom: "2rem"}} className="container">
+          <div className="row card-list">
           {
             loading ? <Loading />
             :
@@ -74,15 +74,18 @@ function Home() {
                         <img id="img-hover" src={item.coverUrl!== "NotFound" ? item.coverUrl : "https://res.cloudinary.com/quocviet0503/image/upload/v1596661882/default-book-icon_bcxisi.png"} 
                             style={{width: "200px", height: "250px"}}
                           className="card-img-top m-1" alt={item.title}/>
+                          <img id="img-hover" src={item.coverUrl!== "NotFound" ? item.coverUrl : "https://res.cloudinary.com/quocviet0503/image/upload/v1596661882/default-book-icon_bcxisi.png"} 
+                            style={{width: "200px", height: "250px", opacity: 1}}
+                          className="card-img-top m-1" alt={item.title}/>
                         <div className="card-body">
-                          <h5 className="card-title" style={{height: "48px !important"}}>
+                          <h5 className="card-title text-truncate" style={{height: "48px !important", width: "180px", height: "25px"}}>
                             {item.title}  
                           </h5>
-                          <div className="card-text">
+                          {/* <div className="card-text">
                             <div className="text-truncate" style={{width: "180px"}}>
                               <span>{item.description}</span>
                             </div>
-                          </div>
+                          </div> */}
                           <div className="row">
                             <CartContext.Consumer>
                               {({addToCart}) =>

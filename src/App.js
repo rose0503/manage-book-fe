@@ -1,6 +1,7 @@
 import React,{useEffect, createContext, Suspense, useContext, useReducer} from 'react';
 import {BrowserRouter, Route, Switch, useHistory} from "react-router-dom"
 import Navbar from './components/Common/Navbar'
+import Footer from './components/Common/Footer'
 
 import Signin from './components/Screen/Signin/Signin'
 import User from './components/Screen/User'
@@ -10,7 +11,7 @@ import Loading from './components/Common/Loading'
 import NotFound from './components/Common/NotFound'
 import {reducer, initialState} from './hooks/useReducer'
 import DetailBook from './components/Screen/DetailBook/DetailBook';
-import Profile from './components/Screen/Profile';
+import Profile from './components/Screen/Profile/Profile';
 import {CartProvider} from './hooks/cartContext';
 import UserTrans from './components/Screen/UserTrans/UserTrans';
 import MyShop from './components/Screen/Shop/MyShop';
@@ -40,7 +41,7 @@ const Routing = () => {
         <Route exact path='/'>
           <Home/>
         </Route>
-        <Route path='/book'>
+        <Route exact path='/book'>
           <Home/>
         </Route>
         <Route path='/signin'>
@@ -95,6 +96,7 @@ function App() {
           <Suspense fallback={<Loading />}>
             <Routing />
           </Suspense>
+        <Footer/>
       </BrowserRouter>
       </UseContext.Provider>
       </CartProvider>

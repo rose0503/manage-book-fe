@@ -36,7 +36,7 @@ function DetailBook() {
                     <img className="img-book" src={data.coverUrl} alt={data.title}/>
                     <div className="description-book">
                         <h6>Mô tả</h6>
-                        <span>{data.description}</span>
+                        <span dangerouslySetInnerHTML={{ __html: data.description}}></span>
                     </div>
                 </div>    
             </div>

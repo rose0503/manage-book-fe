@@ -5,6 +5,8 @@ import Icon, { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import './CreateBook.css'
 import bookApi from '../../../api/bookApi';
 import { Label } from 'reactstrap';
+import CKEditor from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 const CreateBook = () => {
     const history = useHistory();
@@ -103,7 +105,7 @@ const CreateBook = () => {
         
         <div className="card input-field" style={{
             margin:"30px auto",
-            maxWidth: "600px",
+            maxWidth: "670px",
             padding:"20px", 
             textAlign:"center",
             display: "flex",
@@ -112,64 +114,29 @@ const CreateBook = () => {
             <h4 style={{fontFamily:"Arial", fontSize: "1.8rem"}}>Tạo sách mới</h4>
             <div style={{display:"grid", gridTemplateColumns:"auto"}}>
                 <div>
-                <Input type="text"
-                    placeholder="Tên sách" 
-                    value={title}
-                    onChange={e => setTitle(e.target.value)}
-                    className="input-book"
-                />
-                <TextArea
-                    value={description}
-                    onChange={e => setDescription(e.target.value)}                       
-                    placeholder="Mô tả"
-                    autoSize={{ minRows: 3, maxRows: 5 }}
-                    className="input-book"
-                />
-                <Label for="exampleFile">Chọn ảnh</Label>
-                <Input type="file" name="file" id="exampleFile" style={{width: "auto", marginLeft: "5px"}}
-                  onChange={e => {
-                            beforeUpload(e.target ? e.target.files[0] : null)
-                            setImage(e.target.files[0])}}/>
-                {/* <Input type="text" 
-                    placeholder= "Mô tả" 
-                    value={body}
-                    onChange={e => setBody(e.target.value)}    
-                /> */}
+                    <Input type="text"
+                        placeholder="Tên sách" 
+                        value={title}
+                        onChange={e => setTitle(e.target.value)}
+                        className="input-book"
+                    />
+                    <CKEditor
+                        placeholder="Mô tả"
+                        style={{marginLeft:"10px !important"}}
+                        editor={ ClassicEditor }
+                        onChange={ ( event, editor ) => {
+                            const data = editor.getData();
+                            setDescription(data)
+                        } }
+                    />
+                    <div style={{margin: "5px 0"}}>
+                        <Label for="exampleFile">Chọn ảnh</Label>
+                        <Input type="file" name="file" id="exampleFile" style={{width: "auto", marginLeft: "5px"}}
+                        onChange={e => {
+                                    beforeUpload(e.target ? e.target.files[0] : null)
+                                    setImage(e.target.files[0])}}/>
+                    </div>
                 </div>
-            {/* <div className="file-field input-field">
-                <div className="btn #64b5f6 blue darken-1">
-                    <span>Hình Ảnh</span>
-                    <input type="file" onChange={e => setImage(e.target.files[0])} />
-                </div>
-                <div className="file-path-wrapper">
-                    <input className="file-path validate" type="text" placeholder="Chọn ảnh"/>
-                </div>
-            </div> */}
-            
-            {/* <Upload accept=".png" onPreview>
-                        <Button>
-                            <Icon type="upload" /> Click to Upload
-                        </Button>
-            </Upload> */}
-            {/* <div className="update-btn">
-                <Upload
-                    name="avatar"
-                    listType="picture-card"
-                    className="avatar-uploader"
-                    showUploadList={false}
-                    action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-                    beforeUpload={beforeUpload}
-                    onChange={(e, info) => {
-                                    handleChange(e)
-                                    handleChange2(e)
-                                    // console.log(info.fileList[0])
-                                    
-                                }}
-                    // onChange={e => setImage(e.file)}
-                >
-                    {imageUrl ? <img src={imageUrl} alt="avatar" style={{ width: '100%' }} /> : uploadButton}
-            </Upload>
-            </div> */}
             </div>
             <Button loading= {loading} style={{width: "135px", marginTop:"10px"}} onClick={postDetails}>
                     Tạo sách 
