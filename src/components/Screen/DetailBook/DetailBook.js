@@ -28,7 +28,7 @@ function DetailBook() {
             loading ? <Loading />
             :
         <div>
-           <div className="container p-5">
+           <div className="container p-5" style={{maxWidth: "fit-content"}}>
                 <div className="d-flex justify-content-center">
                     <h2 className="mb-4"> {data.title}</h2>
                 </div>

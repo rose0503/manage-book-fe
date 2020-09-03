@@ -169,15 +169,15 @@
 
 .number-item-cart{
   position: absolute;
-    width: 16px;
+    width: 22px;
     height: 17px;
     background: #FF5722;
-    border-radius: 50%;
+    border-radius: 40%;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
     color: white;
-    top: -5px;
+    top: -6px;
     right: 10px;
     font-size: 12px;
 }

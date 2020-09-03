@@ -62,9 +62,9 @@ const CreateBook = () => {
       
     function beforeUpload(file) {
         if(file){
-            const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
+            const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png' || file.type === 'image/gif';
             if (!isJpgOrPng) {
-                message.error('Chỉ có thể upload JPG/PNG file!');
+                message.error('Chỉ có thể upload JPG/PNG/GIF file!');
             }
             const isLt2M = file.size / 1024 / 1024 < 2;
             if (!isLt2M) {

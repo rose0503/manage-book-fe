@@ -54,7 +54,7 @@ const NavBar = () => {
       <>
         <Link className="cart-container"  to='/cart'>
         <CartContext.Consumer>
-          {({cartItems}) => <div className={cartItems.length=== 0 ? '' : `number-item-cart`}>{cartItems.length=== 0 ? '' : cartItems.length}</div>}
+          {({cartItems}) => <div className={cartItems.length=== 0 ? 'number-item-cart' : `number-item-cart`}>{cartItems.length=== 0 ? '0' : cartItems.length}</div>}
         </CartContext.Consumer> 
         <ShoppingCartOutlined className="cart-item"/>   
         </Link>
@@ -132,7 +132,7 @@ const NavBar = () => {
           {renderList()}
         </div>
       </div>
-      <Navbar color="light" light expand="md" style={{padding: ".5rem 0", marginLeft: "0.8rem"}}>
+      <Navbar color="light" light expand="md" style={{padding: ".5rem 0.8rem"}}>
         <NavbarBrand />
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
@@ -151,8 +151,9 @@ const NavBar = () => {
                 <NavLink tag={Link} to='/usertrans'>Sách Mượn</NavLink>
             </NavItem>}
         </Nav>
-        {cart()} 
         {shop()}
+        {cart()} 
+        
             
           
         </Collapse>

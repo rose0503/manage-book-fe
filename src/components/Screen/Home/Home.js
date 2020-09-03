@@ -8,6 +8,8 @@ import Loading from '../../Common/Loading'
 import Pagination from '../Pagination/Pagination'
 import FiltersBook from '../FiltersBook/FiltersBook';
 import {CartContext} from '../../../hooks/cartContext'
+import './Home.css'
+import { Tooltip } from 'antd';
 
 function Home() {
   const [data,setData] = useState([])
@@ -21,7 +23,7 @@ function Home() {
   })
 
   const [filters, setFilters] = useState({ 
-    _limit: 6,
+    _limit: 12,
     _page: 1,
     title_like : ''
   })
@@ -55,83 +57,85 @@ function Home() {
   }
     return (
       <>
-      {
-        data ?
-        <>
-          <FiltersBook onSubmit={handleChangeFilter} />
-          <div style={{display: "flex", justifyContent:"center", clear:"both", marginBottom: "2rem"}} className="container">
-          <div className="row card-list">
+      <div className={!loading ? "container p-5" : "container p-5 homebook"}>
+        <div className="d-flex" style={{flexDirection: "column", position: "relative"}}>
+          <h2 className="mb-4"> Cửa hàng sách</h2>
           {
-            loading ? <Loading />
-            :
-            data.map((item, i) =>{
-              return (
-                <>
-                
-                <div className="item-list"  key={i} >
-                  <div className="col-sm-6 col-md-4 col-lg-3">
-                    <div id="card-hover" className=" card mb-3" style={{width: "210px", transition: "all 0.7"}}>
-                        <img id="img-hover" src={item.coverUrl!== "NotFound" ? item.coverUrl : "https://res.cloudinary.com/quocviet0503/image/upload/v1596661882/default-book-icon_bcxisi.png"} 
-                            style={{width: "200px", height: "250px"}}
-                          className="card-img-top m-1" alt={item.title}/>
-                          <img id="img-hover" src={item.coverUrl!== "NotFound" ? item.coverUrl : "https://res.cloudinary.com/quocviet0503/image/upload/v1596661882/default-book-icon_bcxisi.png"} 
-                            style={{width: "200px", height: "250px", opacity: 1}}
-                          className="card-img-top m-1" alt={item.title}/>
-                        <div className="card-body">
-                          <h5 className="card-title text-truncate" style={{height: "48px !important", width: "180px", height: "25px"}}>
-                            {item.title}  
-                          </h5>
-                          {/* <div className="card-text">
-                            <div className="text-truncate" style={{width: "180px"}}>
-                              <span>{item.description}</span>
-                            </div>
-                          </div> */}
-                          <div className="row">
-                            <CartContext.Consumer>
-                              {({addToCart}) =>
-                                <button className="btn btn-primary m-1" onClick={()=>addToCart(item)}>
-                                  Add to cart
-                                </button>
-                            }                       
-                            </CartContext.Consumer>
-                            <Link className="btn btn-primary m-1" to={`/book/${item._id}`}>
-                              Chi tiết
-                            </Link>
+            <>
+            {
+              data ?
+              <>
+                <FiltersBook onSubmit={handleChangeFilter} />
+                <div style={{display: "flex", justifyContent:"center", clear:"both", marginBottom: "2rem"}} className="container">
+                <div className="row card-list">
+                {
+                  loading ? <Loading />
+                  :
+                  data.map((item, i) =>{
+                    return (
+                      <>
+                      <Tooltip placement="top" color="#2db7f5" title={item.title}>
+                      <div className="item-list"  key={i} >
+                        <div className="col-sm-6 col-md-4 col-lg-3">
+                          <div id="card-hover" className=" card mb-3" style={{width: "210px", transition: "all 0.7"}}>
+                              <img id="img-hover" src={item.coverUrl!== "NotFound" ? item.coverUrl : "https://res.cloudinary.com/quocviet0503/image/upload/v1596661882/default-book-icon_bcxisi.png"} 
+                                  style={{width: "200px", height: "250px"}}
+                                className="card-img-top m-1" alt={item.title}/>
+                              <div className="card-body">
+                                <h5 className="card-title text-truncate" style={{height: "48px !important", width: "180px", height: "25px"}}>
+                                  {item.title}  
+                                </h5>
+                                <div className="row">
+                                  <CartContext.Consumer>
+                                    {({addToCart}) =>
+                                      <button className="btn btn-primary m-1" onClick={()=>addToCart(item)}>
+                                        Add to cart
+                                      </button>
+                                  }                       
+                                  </CartContext.Consumer>
+                                  <Link className="btn btn-primary m-1" to={`/book/${item._id}`}>
+                                    Chi tiết
+                                  </Link>
+                                </div>
+                              </div>
                           </div>
                         </div>
-                    </div>
-                  </div>
+                      </div>
+                      </Tooltip>
+                      </>
+                  )})           
+                }
                 </div>
+                </div>
+                {
+                  !loading ? <Pagination  onPageChagne={handlePageChange} 
+                          pagination={pagination} 
+                          />
+                        : ""  
+                }
             </>
-            )})           
+            : 
+              <div className="no-cart cart">Hiện tại chưa có sách nào.</div>     
+            
+            }
+            </>
           }
-          </div>
-          </div>
-          {
-            !loading ? <Pagination  onPageChagne={handlePageChange} 
-                    pagination={pagination} 
-                    />
-                  : ""  
-          }
-      </>
-      : 
-        <div className="no-cart cart">Hiện tại chưa có sách nào.</div>     
+        </div>        
+      </div>
+    </>
       
-      }
-      </>
     )}
 
 const  Book = () =>{
   return (
     <>
-      <div className="container p-5">
+      {/* <div className="container p-5">
         <div className="d-flex" style={{flexDirection: "column", position: "relative"}}>
           <h2 className="mb-4"> Cửa hàng sách</h2>
           {Home()}
-        </div>
-                  
-        
-      </div>
+        </div>        
+      </div> */}
+      {Home()}
     </>
   )
 }
