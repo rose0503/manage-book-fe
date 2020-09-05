@@ -64,6 +64,7 @@ function Render() {
     
     return (
       <>
+      <div className={!loading ? "" : "customheight"}>
       {/* <FiltersBook onSubmit={handleChangeFilter} /> */}
       <div style={{width: "100%", clear:"both"}}>
       {
@@ -74,7 +75,8 @@ function Render() {
         </>
                   
       }
-      </div>     
+      </div>    
+      </div> 
       </>
     );
   }

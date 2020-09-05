@@ -62,8 +62,10 @@ function Home() {
           <h2 className="mb-4"> Cửa hàng sách</h2>
           {
             <>
+            <div className={!loading ? "" : "homebook"}>
             {
               data ?
+              
               <>
                 <FiltersBook onSubmit={handleChangeFilter} />
                 <div style={{display: "flex", justifyContent:"center", clear:"both", marginBottom: "2rem"}} className="container">
@@ -120,10 +122,11 @@ function Home() {
               <div className="no-cart cart">Hiện tại chưa có sách nào.</div>     
             
             }
+            </div>
             </>
           }
         </div>        
-      </div>
+        </div>
     </>
       
     )}

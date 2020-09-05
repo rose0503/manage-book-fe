@@ -74,13 +74,10 @@ const Cart = () =>{
                               className="card-img-top m-1" alt={item.title}/>
                             <div className="card-body">
                               <h5 className="card-title" style={{height: "48px !important"}}>
-                                {item.title}  
-                              </h5>
-                              <div className="card-text">
                                 <div className="text-truncate" style={{width: "180px"}}>
-                                  <span>{item.description}</span>
-                                </div>
-                              </div>
+                                  {item.title} 
+                                </div> 
+                              </h5>
                             </div>
                         </div>
                       </div>

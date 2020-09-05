@@ -118,6 +118,7 @@ function Trans() {
     const title = state ? state.name : "Tài khoản"
       return (
         <>
+        <div className={!loading ? "" : "customheight"}>
         <div style={{width: "100%", clear:"both"}}>
         {
           loading ? <Loading />
@@ -136,7 +137,8 @@ function Trans() {
           </>
                     
         }
-        </div>     
+        </div>    
+        </div> 
         </>
       );
 }

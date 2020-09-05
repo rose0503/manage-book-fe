@@ -66,6 +66,7 @@ function Trans() {
     
     return (
       <>
+      <div className={!loading ? "" : "customheight"}>
       {/* <FiltersBook onSubmit={handleChangeFilter} /> */}
       <div style={{width: "80%", clear:"both"}}>
       {
@@ -77,6 +78,7 @@ function Trans() {
                   
       }
       </div>     
+      </div>
       </>
     );
   }

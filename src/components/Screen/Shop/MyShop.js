@@ -54,75 +54,76 @@ const Render = () =>{
         setVisible(false)
     };  
 
-    const re = () =>{
-        if(!datashop) {
+    // const re = () =>{
+    //     if(!datashop) {
             
-            try{
-                return(
-                !datashop.shopOwner ?
-            <>
-            {
-            !data && 
-            <>
-                <div className="shop">
-                    <h5  className="mb-4">Hiện tại, bạn chưa có cửa hàng!
-                        <div>
-                            <h6 style={{margin:"10px"}}>Hãy tạo store nào.</h6>
-                            <Button onClick={showModal}>Đăng ký Store</Button>
-                        </div>
-                    </h5>
-                </div>
-                <Modal
-                    visible={visible}
-                    title="Tạo cửa hàng"
-                    onOk={handleOk}
-                    onCancel={handleCancel}
-                    footer={[
-                        <Button key="back" onClick={handleCancel}>
-                                Quay Lại
-                        </Button>,
-                        <Button key="submit" type="primary" loading={loading} onClick={handleOk}>
-                        Tạo
-                        </Button>,
-                    ]}
-                    >
-                    <div style={{display:"flex"}}>
-                        <label htmlFor="name" style={{width: "24%"}}>Tên cửa hàng:</label>
-                        <Input id="name" placeholder="Vui lòng nhập tên cửa hàng" onChange={(e)=>setName(e.target.value)} />
-                    </div>
+    //         try{
+    //             return(
+    //             !datashop.shopOwner ?
+    //         <>
+    //         {
+    //         !data && 
+    //         <>
+    //             <div className="shop">
+    //                 <h5  className="mb-4">Hiện tại, bạn chưa có cửa hàng!
+    //                     <div>
+    //                         <h6 style={{margin:"10px"}}>Hãy tạo store nào.</h6>
+    //                         <Button onClick={showModal}>Đăng ký Store</Button>
+    //                     </div>
+    //                 </h5>
+    //             </div>
+    //             <Modal
+    //                 visible={visible}
+    //                 title="Tạo cửa hàng"
+    //                 onOk={handleOk}
+    //                 onCancel={handleCancel}
+    //                 footer={[
+    //                     <Button key="back" onClick={handleCancel}>
+    //                             Quay Lại
+    //                     </Button>,
+    //                     <Button key="submit" type="primary" loading={loading} onClick={handleOk}>
+    //                     Tạo
+    //                     </Button>,
+    //                 ]}
+    //                 >
+    //                 <div style={{display:"flex"}}>
+    //                     <label htmlFor="name" style={{width: "24%"}}>Tên cửa hàng:</label>
+    //                     <Input id="name" placeholder="Vui lòng nhập tên cửa hàng" onChange={(e)=>setName(e.target.value)} />
+    //                 </div>
                     
-                </Modal>
-            </>
-            }
-            </>:
-            data &&
-            <>
-            <div className="shop">
-                {data.name}
-            </div>
-            </>
-                )
-            }catch(err){
-                console.log("err", err)
-            }
+    //             </Modal>
+    //         </>
+    //         }
+    //         </>:
+    //         data &&
+    //         <>
+    //         <div className="shop">
+    //             {data.name}
+    //         </div>
+    //         </>
+    //             )
+    //         }catch(err){
+    //             console.log("err", err)
+    //         }
                 
             
-        }
-        else{
-            return(
-            <>
-                <div className="shop">
-                    {datashop.shopOwner.name}
-                </div>
-            </>
-            )
-        } 
-    }
+    //     }
+    //     else{
+    //         return(
+    //         <>
+    //             <div className="shop">
+    //                 {datashop.shopOwner.name}
+    //             </div>
+    //         </>
+    //         )
+    //     } 
+    // }
 
     return (
         <>
+        <div className={!loading ? "container p-5" : "container p-5 customheight"}>
         {
-            re()
+            // re()
             // <>
             // {
             // !data && 
@@ -165,6 +166,7 @@ const Render = () =>{
             //     </div>
             // </>
         }
+        </div>
         </>
     )
 }
@@ -175,7 +177,7 @@ function MyShop() {
             <div className="d-flex justify-content-center">
                 <h2 className="mb-4">Cửa hàng của bạn</h2>
             </div>
-            {Render()}  
+            {/* {Render()}   */}
         </div>
     );
 }

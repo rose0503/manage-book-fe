@@ -8,7 +8,7 @@
 .loading{
   position: absolute !important;
   left: 50%;
-  top: 150%;
+  top: 40%;
 }
 
 .notfound{
@@ -234,4 +234,8 @@
 
 .footer ul li:nth-child(1) {
   font-weight: 600;
+}
+
+.customheight{
+  height: 400px;
 }

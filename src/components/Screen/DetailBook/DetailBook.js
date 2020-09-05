@@ -24,11 +24,12 @@ function DetailBook() {
     },[])
     return (
     <>
+        <div className={!loading ? "container p-5" : "container p-5 detailbook"} style={{maxWidth: "fit-content", position: "relative"}}>
         {
             loading ? <Loading />
             :
         <div>
-           <div className="container p-5" style={{maxWidth: "fit-content"}}>
+           {/* <div className="container p-5" > */}
                 <div className="d-flex justify-content-center">
                     <h2 className="mb-4"> {data.title}</h2>
                 </div>
@@ -39,9 +40,10 @@ function DetailBook() {
                         <span dangerouslySetInnerHTML={{ __html: data.description}}></span>
                     </div>
                 </div>    
-            </div>
+            {/* </div> */}
         </div>
-    }
+        }
+        </div>
      </>
     );
    

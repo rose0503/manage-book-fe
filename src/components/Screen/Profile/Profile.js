@@ -4,24 +4,34 @@ import { message } from 'antd';
 import NotFound from '../../Common/NotFound';
 import './Profile.css'
 import { Tag, Divider } from 'antd';
+import Loading from '../../Common/Loading'
+
 
 const Render =() =>{
     const [data, setData] = useState(null)
+    const [loading, setLoading] = useState(false);
+
 
     useEffect(()=>{
+        setLoading(true)
         profileApi.getuser()
          .then(response =>{
+            setLoading(false)
             setData(response.data.user)
          })
          .catch(error=>{
             message.error("Loading fail")
         })
 
-    })
+    },[])
     return(
         <>
         {
             data ? 
+                <>
+                {
+                loading ? <Loading />
+                :
                 <>  
                     <div className="header-profile">
                         <div >
@@ -43,11 +53,11 @@ const Render =() =>{
                             }
                         </div>
                     </div>
+                    <div>
+                        <Divider orientation="left">Shop</Divider>
                     {
                         data.shopOwner ?
-                        
-                        <div>
-                            <Divider orientation="left">Shop</Divider>
+                            <>
                             <div className="shop-profile">
                                 <div>
                                     Chủ shop: 
@@ -67,10 +77,13 @@ const Render =() =>{
                                 <div className="nobook-profile">Hiện chưa có sách</div>
                                 }
                             </div>
-                        </div>
+                            </>
                         : 
                         <div>Hiện tại chưa có cửa hàng nào!</div>
                     }
+                    </div>
+                </>
+                }
                 </>
             :
             NotFound

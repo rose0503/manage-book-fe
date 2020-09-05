@@ -16,3 +16,7 @@
 .description-book{
     flex-grow: 9;
 }
+
+.detailbook{
+    height: 400px;
+}
