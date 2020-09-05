@@ -74,6 +74,7 @@ function Home() {
                   data.map((item, i) =>{
                     return (
                       <>
+                      <div key={i} >
                       <Tooltip placement="top" color="#2db7f5" title={item.title}>
                       <div className="item-list"  key={i} >
                         <div className="col-sm-6 col-md-4 col-lg-3">
@@ -102,6 +103,7 @@ function Home() {
                         </div>
                       </div>
                       </Tooltip>
+                      </div>
                       </>
                   )})           
                 }
